@@ -16,7 +16,8 @@ header {
   margin: 5px;
   padding: 20px 10px;
   text-align: center;
-  font-size: 16pt;
+  font-size: 12px;
+  font-size: 2vw;
 }
 .card-list {
   display: flex;
@@ -87,6 +88,9 @@ footer ul li a {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  margin-bottom: 20px;
+  height: 80%;
+  overflow-y: auto;
 }
 
 /* The Close Button */
@@ -102,4 +106,58 @@ footer ul li a {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* popup content*/
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-image img {
+  width: 100px;
+  height: 100px;
+}
+.modal-content p {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+.modal-content p span {
+  font-weight: bold;
+}
+
+.follower {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid #aaaaaa;
+  padding: 2px;
+  margin: 5px 2px;
+}
+.follower .left {
+  margin-right: 10px;
+}
+.follower .left img {
+  height: 70px;
+}
+.follower .right {
+  font-size: 24px;
+  line-height: 5px;
+  cursor: pointer;
+}
+.follower .right:hover {
+  color: #888;
+}
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+  .card-list {
+    width: 100%;
+  }
+  .avatar-img {
+    height: 100%;
+    width: 100%;
+  }
 }

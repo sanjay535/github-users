@@ -4,8 +4,17 @@ import { showPopup } from "../actions/actions";
 
 class Card extends Component {
   displayPopup = (e) => {
-    console.log("e.target=", e.target.parentElement.parentElement.id);
-    this.props.dispatch(showPopup(true));
+    // console.log("e.target=", e.target.parentElement.parentElement.id);
+    const user_id = e.target.parentElement.parentElement.id;
+    const { userList } = this.props;
+    const selected_user = userList.find(
+      (user) => Number(user.id) === Number(user_id)
+    );
+    // this.props.dispatch(fetchSelectedUserDetails(selected_user.url));
+    // this.props.dispatch(
+    //   fetchSelectedUserFollowers(selected_user.followers_url)
+    // );
+    this.props.dispatch(showPopup(true, selected_user));
   };
 
   render() {
@@ -28,8 +37,10 @@ class Card extends Component {
 
 function mapStateToProps(state) {
   // console.log("state= ", state);
+  const { show, userList } = state.users;
   return {
-    show: state.users.show,
+    show,
+    userList,
   };
 }
 export default connect(mapStateToProps)(Card);
