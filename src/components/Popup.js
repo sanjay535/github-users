@@ -45,10 +45,7 @@ class Popup extends React.Component {
             <span className="close" onClick={this.hidePopup}>
               &times;
             </span>
-            <p>
-              Username : &nbsp;
-              <span>{user_details.login}</span>
-            </p>
+            <p>{user_details.login}</p>
             <div className="user-details">
               <div className="user-image">
                 <img src={user_details.avatar_url} alt="avatar" />

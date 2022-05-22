@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { addUsersInList } from "../actions/actions";
 import Card from "./Card";
 import Popup from "./Popup";
+import logo from "../logo.png";
+
+// const urlLogo = new URL("../../public/logo.png", import.meta.url).pathname;
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,7 +19,9 @@ class App extends React.Component {
     const { userList, show } = this.props.users;
     return (
       <div className="container">
-        <header>Github Users</header>
+        <header>
+          <img src={logo} alt="logo" />
+        </header>
         <div className="card-list">
           {userList.map((user) => (
             <Card user={user} key={user.id} />

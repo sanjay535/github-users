@@ -21,14 +21,12 @@ class Card extends Component {
     // console.log("this.props in card=", this.props);
     const { user } = this.props;
     return (
-      <div>
-        <div className="card" id={user.id} onClick={this.displayPopup}>
-          <div className="left">
-            <img className="avatar-img" src={user.avatar_url} alt="avatar" />
-          </div>
-          <div className="right">
-            <span>{user.login}</span>
-          </div>
+      <div className="card" id={user.id} onClick={this.displayPopup}>
+        <div className="left">
+          <img className="avatar-img" src={user.avatar_url} alt="avatar" />
+        </div>
+        <div className="right">
+          <span>{user.login}</span>
         </div>
       </div>
     );
