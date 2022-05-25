@@ -16,7 +16,7 @@ export function addUsers(userList = []) {
 export function addUsersInList() {
   return function (dispatch) {
     // const url = new URL("../mock.json", import.meta.url).pathname;
-    const url1 = "https://api.github.com/users?since=135";
+    const url1 = "https://api.github.com/users?per_page=100";
     fetch(url1)
       .then((res) => res.json())
       .then((res) => {
@@ -33,7 +33,8 @@ export function fetchSelectedUserDetails(user_url) {
       .then((res) => {
         // console.log("user_url=", res);
         dispatch(updateUserDetails(res));
-      });
+      })
+      .catch((error) => console.error(error));
   };
 }
 
@@ -51,7 +52,8 @@ export function fetchSelectedUserFollowers(followers_url) {
       .then((res) => {
         // console.log("followers_url=", res);
         dispatch(updateFollowerDetails(res));
-      });
+      })
+      .catch((error) => console.error(error));
   };
 }
 function updateFollowerDetails(followers) {

@@ -10,6 +10,7 @@ class Follower extends React.Component {
     const { url, followers_url } = follower;
     this.props.dispatch(fetchSelectedUserDetails(url));
     this.props.dispatch(fetchSelectedUserFollowers(followers_url));
+    this.props.followerClick();
   };
 
   render() {

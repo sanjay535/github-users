@@ -13,9 +13,10 @@ class Popup extends React.Component {
     this.state = {
       isClicked: false,
     };
+    this.myRef = React.createRef();
   }
   componentDidMount() {
-    console.log("popup mounted");
+    // console.log("popup mounted");
     const { url, followers_url } = this.props.current_user;
     this.props.dispatch(fetchSelectedUserDetails(url));
     this.props.dispatch(fetchSelectedUserFollowers(followers_url));
@@ -25,6 +26,8 @@ class Popup extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("click", this.handleClickOutSide);
   }
+
+  scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
 
   handleClickOutSide = (e) => {
     if (e.target.id === "myModal") {
@@ -36,12 +39,17 @@ class Popup extends React.Component {
     this.props.dispatch(hidePopup(false));
   };
 
+  followerClick = () => {
+    // console.log("Called follower click");
+    // scrollToRef(this.myRef);
+  };
+
   render() {
     const { user_details, followers } = this.props;
     return (
       <div>
         <div id="myModal" className="modal">
-          <div className="modal-content">
+          <div ref={this.myRef} className="modal-content">
             <span className="close" onClick={this.hidePopup}>
               &times;
             </span>
@@ -57,7 +65,13 @@ class Popup extends React.Component {
 
             <div className="followers">
               {followers.map((follower) => {
-                return <Follower follower={follower} key={follower.id} />;
+                return (
+                  <Follower
+                    followerClick={this.followerClick}
+                    follower={follower}
+                    key={follower.id}
+                  />
+                );
               })}
             </div>
           </div>

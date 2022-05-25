@@ -7,16 +7,56 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .container {
-  height: 100vh;
   background-color: #f2f2f2;
 }
 header {
   background-color: #6521ff;
   color: #fff;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  box-shadow: 0px 10px 8px #888888;
+}
+.search-container {
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+.search-container input {
+  flex-basis: 500px;
+  height: 42px;
+  font-size: 16px;
+  padding: 0 10px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: none;
+}
+.search-container input:focus {
+  outline: none;
+  border: 1px solid #993cf3;
+}
+#btn {
+  height: 43px;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 2px;
+  color: #fff;
+  background: #993cf3;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: none;
+  outline: none;
+}
+#btn:hover {
+  background: #b36ff6;
+  cursor: pointer;
 }
 header img {
-  height: 80px;
+  height: 100px;
+  margin-left: 40px;
 }
 .card-list {
   display: flex;
@@ -31,9 +71,16 @@ header img {
   justify-content: center;
   padding-bottom: 5px;
   margin: 10px;
-  border: 0.5px solid #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
   cursor: pointer;
   letter-spacing: 1pt;
+  opacity: 0.7;
+  box-shadow: 5px 5px 8px #888888;
+}
+.card:hover {
+  opacity: 1;
+  color: #993cf3;
 }
 .avatar-img {
   height: 150px;
@@ -46,8 +93,17 @@ header img {
   display: flex;
   justify-content: center;
 }
+.menu-btn {
+  display: none;
+  background-color: #6521ff;
+  color: #fff;
+  font-size: 32px;
+  padding: 12px 16px;
+  cursor: pointer;
+  border: none;
+}
 
-footer {
+/* footer {
   background-color: #4d4dff;
   color: #fff;
   margin: 5px;
@@ -61,7 +117,7 @@ footer ul li {
 footer ul li a {
   text-decoration: none;
   color: #fff;
-}
+} */
 
 /* model popup */
 /* The Modal (background) */
@@ -148,7 +204,38 @@ footer ul li a {
 .follower .right:hover {
   color: #888;
 }
+
 @media only screen and (max-width: 750px) {
+  .menu-btn {
+    display: block;
+  }
+  .search-container {
+    width: 100%;
+    visibility: hidden;
+  }
+
+  .search-container input {
+    flex-basis: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+  }
+  #btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+  }
+  header {
+    flex-wrap: wrap;
+  }
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .logo img {
+    margin: 0;
+  }
   .card {
     width: 100%;
   }
