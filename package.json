@@ -1,6 +1,6 @@
 {
   "name": "github-users",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -19,7 +19,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release-patch": "standard-version --release-as patch -t \"\" -a",
+    "release-minor": "standard-version --release-as minor -t \"\" -a",
+    "release-major": "standard-version --release-as major -t \"\" -a"
   },
   "eslintConfig": {
     "extends": [
