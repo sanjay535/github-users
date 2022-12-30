@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { showPopup } from "../actions/actions";
+import LoadingAvatar from "./loader/LoadingAvatar";
 
 class Card extends Component {
   displayPopup = (e) => {
@@ -20,6 +21,9 @@ class Card extends Component {
   render() {
     // console.log("this.props in card=", this.props);
     const { user } = this.props;
+    if(!user){
+      return <LoadingAvatar/>
+    }
     return (
       <div className="card" id={user.id} onClick={this.displayPopup}>
         <div className="left">
