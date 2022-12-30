@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { showPopup } from "../actions/actions";
-import LoadingAvatar from "./loader/LoadingAvatar";
+import placeholderSrc from '../avatar.png';
+import ProgressiveImage from "react-progressive-graceful-image";
+
 
 class Card extends Component {
   displayPopup = (e) => {
@@ -21,13 +23,22 @@ class Card extends Component {
   render() {
     // console.log("this.props in card=", this.props);
     const { user } = this.props;
-    if(!user){
-      return <LoadingAvatar/>
-    }
+   
     return (
       <div className="card" id={user.id} onClick={this.displayPopup}>
         <div className="left">
-          <img className="avatar-img" src={user.avatar_url} alt="avatar" />
+        <ProgressiveImage src={user.avatar_url} placeholder={placeholderSrc}>
+            {(src, loading) => (
+              <img
+                className={`image${loading ? " loading" : " loaded"}`}
+                src={src}
+                alt="avatar"
+                width="auto"
+                height="150"
+              />
+            )}
+    </ProgressiveImage>
+          {/* <img className="avatar-img" src={user.avatar_url} alt="avatar" /> */}
         </div>
         <div className="right">
           <span>{user.login}</span>
