@@ -55,12 +55,18 @@ class App extends React.Component {
     this.props.dispatch(addSearchResult({}));
   }
 
+  clickedOnSearchedUser=()=>{
+    console.log('clickedOnSearchedUser called');
+    this.setState({inputVal:'',showSearchResult:false});
+  }
+
   render() {
     // console.log("this.props= ", this.props);
     // const { users } = this.props;
     const { userList, show, search_result, spinner} = this.props.users;
     const {items}=search_result;
-    const {showSearchResult}=this.state;
+    const {showSearchResult, inputVal}=this.state;
+    console.log(items);
     return (
       <div className="container">
         <header>
@@ -77,14 +83,14 @@ class App extends React.Component {
 
           <div id="menu" className="search-container">
             <div className="search-input-button">
-              <input spellCheck={false} onChange={this.handleChange}/>
+              <input value={inputVal} spellCheck={false} onChange={this.handleChange}/>
               <button id="btn" onClick={this.handleClick}>Search</button>
             </div>
           </div>
         </header>
         <div className="search-result" style={{display:`${!showSearchResult?'none':''}`}}>
               <div className="search-user">
-                {spinner?<Spinner/>:items?.map(user=><SearchUser key={user.id} username={user.login} avatar={user.avatar_url}/>)}
+                {spinner?<Spinner/>:items?.map(user=><SearchUser key={user.id} user={user} dispatch={this.props.dispatch} clickedOnSearchedUser={this.clickedOnSearchedUser}/>)}
               </div>
         </div>
         <div className="card-list">
@@ -92,6 +98,7 @@ class App extends React.Component {
             <Card user={user} key={user.id} />
           ))}
         </div>
+        {/* popup using store as props */}
         {show && <Popup />}
       </div>
     );

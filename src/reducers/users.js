@@ -12,7 +12,7 @@ import {
 
 const intialState = {
   userList: [],
-  show: false,
+  show: false,   //for showing popup
   current_user: {},
   user_details: {},
   followers: [],

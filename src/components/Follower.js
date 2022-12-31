@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import ProgressiveImage from "react-progressive-graceful-image";
+import placeholderSrc from '../avatar.png';
 import {
   fetchSelectedUserDetails,
   fetchSelectedUserFollowers,
@@ -20,7 +22,17 @@ class Follower extends React.Component {
     return (
       <div className="follower">
         <div className="left">
-          <img src={avatar_url} alt="avatar" />
+          <ProgressiveImage src={avatar_url} placeholder={placeholderSrc}>
+            {(src, loading) => (
+              <img
+                className={`image${loading ? " loading" : " loaded"}`}
+                src={src}
+                alt="avatar"
+                width="auto"
+                height="100"
+              />
+            )}
+          </ProgressiveImage>
         </div>
         <div
           className="right"
