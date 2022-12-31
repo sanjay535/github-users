@@ -9,7 +9,7 @@ import {
 
 class SearchUser extends React.Component {
   searchedUserClicked = () => {
-    console.log(this.props.user);
+    // console.log(this.props.user);
     const { url, followers_url } = this.props.user;
     this.props.dispatch(fetchSelectedUserDetails(url));
     this.props.dispatch(fetchSelectedUserFollowers(followers_url));

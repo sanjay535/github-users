@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import {
   fetchSelectedUserDetails,
   fetchSelectedUserFollowers,
+  fetchUserRepos,
   hidePopup,
 } from "../actions/actions";
-import Follower from "./Follower";
+import Tabs from "./Tabs";
 
 class Popup extends React.Component {
   constructor(props) {
@@ -17,9 +18,11 @@ class Popup extends React.Component {
   }
   componentDidMount() {
     // console.log("popup mounted");
-    const { url, followers_url } = this.props.current_user;
+    const { url, followers_url, repos_url } = this.props.current_user;
+    console.log(this.props.current_user);
     this.props.dispatch(fetchSelectedUserDetails(url));
     this.props.dispatch(fetchSelectedUserFollowers(followers_url));
+    this.props.dispatch(fetchUserRepos(repos_url));
     document.addEventListener("click", this.handleClickOutSide);
   }
 
@@ -40,7 +43,7 @@ class Popup extends React.Component {
   };
 
   render() {
-    const { user_details, followers } = this.props;
+    const { user_details, followers, user_repos } = this.props;
     return (
       <div>
         <div id="myModal" className="modal">
@@ -55,18 +58,11 @@ class Popup extends React.Component {
               </div>
               <div className="name">{user_details.name}</div>
               <div className="company">{user_details.company}</div>
-              <div className="followers">{user_details.followers}</div>
+              <div>{user_details.followers}</div>
             </div>
 
-            <div className="followers">
-              {followers.map((follower) => {
-                return (
-                  <Follower
-                    follower={follower}
-                    key={follower.id}
-                  />
-                );
-              })}
+            <div className="followers-repos">
+              <Tabs followers={followers} user_repos={user_repos}/>
             </div>
           </div>
         </div>
@@ -81,5 +77,6 @@ export default connect((state) => {
     current_user: state.users.current_user,
     user_details: state.users.user_details,
     followers: state.users.followers,
+    user_repos:state.users.user_repos
   };
 })(Popup);

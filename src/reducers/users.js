@@ -7,7 +7,8 @@ import {
   UPDATE_FOLLOWERS_DETAILS,
   UPDATE_USER_DETAILS,
   SHOW_SPINNER,
-  HIDE_SPINNER
+  HIDE_SPINNER,
+  ADD_USER_REPOS
 } from "../actions/actionTypes";
 
 const intialState = {
@@ -17,7 +18,8 @@ const intialState = {
   user_details: {},
   followers: [],
   search_result:{},
-  spinner:false
+  spinner:false,
+  user_repos:[]
 };
 
 export function users(state = intialState, action) {
@@ -64,7 +66,12 @@ export function users(state = intialState, action) {
     return {
       ...state,
       spinner: action.spinner,
-    };    
+    }; 
+  case ADD_USER_REPOS:
+    return {
+      ...state,
+      user_repos: action.user_repos,
+    };        
     default:
       //   console.log("default switch case");
       return state;

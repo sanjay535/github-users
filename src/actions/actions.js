@@ -6,7 +6,8 @@ import {
   UPDATE_USER_DETAILS,
   ADD_SEARCH_RESULT,
   SHOW_SPINNER,
-  HIDE_SPINNER
+  HIDE_SPINNER,
+  ADD_USER_REPOS
 } from "./actionTypes";
 
 export function addUsers(userList = []) {
@@ -117,5 +118,25 @@ export function hideSpinner(){
   return {
     type:HIDE_SPINNER,
     spinner:false
+  }
+}
+
+export function fetchUserRepos(url){
+  return function (dispatch) {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log("followers_url=", res);
+        dispatch(addUserRepos(res));
+      })
+      .catch((error) => console.error(error));
+     
+  };
+}
+
+export function addUserRepos(repos){
+  return {
+    type:ADD_USER_REPOS,
+    user_repos:repos
   }
 }

@@ -42,7 +42,6 @@ class App extends React.Component {
   handleClick=(e)=>{
     const {inputVal}=this.state;
     if(inputVal){
-      console.log('input not empty');
       this.props.dispatch(showSpinner())
       this.props.dispatch(fetchSearchResult(inputVal));
       this.setState({showSearchResult:true})
@@ -56,7 +55,7 @@ class App extends React.Component {
   }
 
   clickedOnSearchedUser=()=>{
-    console.log('clickedOnSearchedUser called');
+    // console.log('clickedOnSearchedUser called');
     this.setState({inputVal:'',showSearchResult:false});
   }
 
@@ -66,7 +65,7 @@ class App extends React.Component {
     const { userList, show, search_result, spinner} = this.props.users;
     const {items}=search_result;
     const {showSearchResult, inputVal}=this.state;
-    console.log(items);
+   
     return (
       <div className="container">
         <header>
