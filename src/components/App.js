@@ -7,6 +7,7 @@ import Popup from "./Popup";
 import logo from "../logo.png";
 import SearchUser from "./SearchUser";
 import Spinner from "./Spinner";
+import { FaGithub } from "react-icons/fa";
 
 // const urlLogo = new URL("../../public/logo.png", import.meta.url).pathname;
 
@@ -86,6 +87,7 @@ class App extends React.Component {
               <button id="btn" onClick={this.handleClick}>Search</button>
             </div>
           </div>
+          <div className="github-profile" style={{marginRight:'10px'}}><a href="https://github.com/sanjay535" target='_blank' rel="noreferrer"><FaGithub size="35px" color="#fff"/></a></div>
         </header>
         <div className="search-result" style={{display:`${!showSearchResult?'none':''}`}}>
               <div className="search-user">

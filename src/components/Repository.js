@@ -1,9 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import {FaGithub} from 'react-icons/fa';
 
 
 class Repository extends React.Component {
+    
   render() {
     // console.log("follower props=", this.props.follower);
     // console.log("in followers= ", onFollowerClick);
@@ -13,21 +13,19 @@ class Repository extends React.Component {
         <div className="left">
           <FaGithub height={30}/>
         </div>
-        <a
-          href={url}
-          target='_blank'
-          className="right"
-          rel='noreferrer'
-        >
-          {fullname}
-        </a>
+        <div>
+            <a
+            href={url}
+            target='_blank'
+            className="right"
+            rel='noreferrer'
+            >
+            {(window.innerWidth<=700)? `${fullname.substring(0, 20)}...`:fullname}
+            </a>
+        </div>
       </div>
     );
   }
 }
 
-export default connect((state) => {
-  return {
-    user_repos: state.users.user_repos,
-  };
-})(Repository);
+export default Repository;
