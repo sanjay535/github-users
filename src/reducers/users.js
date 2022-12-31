@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
 import {
+  ADD_SEARCH_RESULT,
   ADD_USERS,
   HIDE_POPUP,
   SHOW_POPUP,
   UPDATE_FOLLOWERS_DETAILS,
   UPDATE_USER_DETAILS,
+  SHOW_SPINNER,
+  HIDE_SPINNER
 } from "../actions/actionTypes";
 
 const intialState = {
@@ -13,6 +16,8 @@ const intialState = {
   current_user: {},
   user_details: {},
   followers: [],
+  search_result:{},
+  spinner:false
 };
 
 export function users(state = intialState, action) {
@@ -45,6 +50,21 @@ export function users(state = intialState, action) {
         ...state,
         followers: action.followers,
       };
+    case ADD_SEARCH_RESULT:
+      return {
+        ...state,
+        search_result: action.search_result,
+      }; 
+    case SHOW_SPINNER:
+    return {
+      ...state,
+      spinner: action.spinner,
+    };
+  case HIDE_SPINNER:
+    return {
+      ...state,
+      spinner: action.spinner,
+    };    
     default:
       //   console.log("default switch case");
       return state;

@@ -27,7 +27,7 @@ class Card extends Component {
     return (
       <div className="card" id={user.id} onClick={this.displayPopup}>
         <div className="left">
-        <ProgressiveImage src={user.avatar_url} placeholder={placeholderSrc}>
+          <ProgressiveImage src={user.avatar_url} placeholder={placeholderSrc}>
             {(src, loading) => (
               <img
                 className={`image${loading ? " loading" : " loaded"}`}
@@ -37,8 +37,7 @@ class Card extends Component {
                 height="150"
               />
             )}
-    </ProgressiveImage>
-          {/* <img className="avatar-img" src={user.avatar_url} alt="avatar" /> */}
+          </ProgressiveImage>
         </div>
         <div className="right">
           <span>{user.login}</span>

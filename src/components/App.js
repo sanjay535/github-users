@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addUsersInList } from "../actions/actions";
+import { addSearchResult, addUsersInList, fetchSearchResult, showSpinner } from "../actions/actions";
 import Card from "./Card";
 import Popup from "./Popup";
 import logo from "../logo.png";
+import SearchUser from "./SearchUser";
+import Spinner from "./Spinner";
 
 // const urlLogo = new URL("../../public/logo.png", import.meta.url).pathname;
 
@@ -13,6 +15,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       isMenuDisplay: false,
+      inputVal:'',
+      showSearchResult:false
     };
   }
   componentDidMount() {
@@ -35,10 +39,28 @@ class App extends React.Component {
     }
   };
 
+  handleClick=(e)=>{
+    const {inputVal}=this.state;
+    if(inputVal){
+      console.log('input not empty');
+      this.props.dispatch(showSpinner())
+      this.props.dispatch(fetchSearchResult(inputVal));
+      this.setState({showSearchResult:true})
+    }else{
+      console.log('input empty');
+    }
+  }
+  handleChange=(e)=>{
+    this.setState({inputVal:e.target.value, showSearchResult:false});
+    this.props.dispatch(addSearchResult({}));
+  }
+
   render() {
     // console.log("this.props= ", this.props);
     // const { users } = this.props;
-    const { userList, show } = this.props.users;
+    const { userList, show, search_result, spinner} = this.props.users;
+    const {items}=search_result;
+    const {showSearchResult}=this.state;
     return (
       <div className="container">
         <header>
@@ -54,10 +76,17 @@ class App extends React.Component {
           </div>
 
           <div id="menu" className="search-container">
-            <input />
-            <button id="btn">Search</button>
+            <div className="search-input-button">
+              <input spellCheck={false} onChange={this.handleChange}/>
+              <button id="btn" onClick={this.handleClick}>Search</button>
+            </div>
           </div>
         </header>
+        <div className="search-result" style={{display:`${!showSearchResult?'none':''}`}}>
+              <div className="search-user">
+                {spinner?<Spinner/>:items?.map(user=><SearchUser key={user.id} username={user.login} avatar={user.avatar_url}/>)}
+              </div>
+        </div>
         <div className="card-list">
           {userList.map((user) => (
             <Card user={user} key={user.id} />
@@ -77,7 +106,7 @@ function mapStateToProps(state) {
 }
 
 App.propTypes = {
-  users: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(App);

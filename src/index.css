@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,12 +19,14 @@ header {
 }
 .search-container {
   visibility: visible;
-  display: flex;
-  justify-content: center;
-  width: 90%;
+  width: 100%;
 }
-
-.search-container input {
+.search-input-button {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+}
+.search-input-button input {
   flex-basis: 500px;
   height: 42px;
   font-size: 16px;
@@ -33,9 +35,57 @@ header {
   border-bottom-left-radius: 4px;
   border: none;
 }
-.search-container input:focus {
+.search-input-button input:focus {
   outline: none;
   border: 1px solid #993cf3;
+}
+.search-result {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-basis: 100%;
+  margin-left: 72px;
+  margin-top: -39px;
+  justify-content: center;
+}
+.search-img-link {
+  display: flex;
+  border-top: 2px solid #f2f2f2;
+  padding-top: 2px;
+  flex-basis: 100%;
+  margin: 1px 0px;
+  justify-content: space-between;
+}
+.search-user {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 513px;
+  background-color: #fff;
+  color: #000;
+  border: 0.5px solid #aaaaaa;
+  padding: 5px 3px;
+  margin-top: -3px;
+  border-top: 0;
+}
+.search-img {
+  margin-left: 10px;
+}
+.search-link {
+  margin-right: 10px;
+  background-color: #6521ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.search-link:hover {
+  background-color: #3b01c4;
+  color: #f2f2f2;
+}
+.search-img img {
+  height: 30px;
+  margin: 0;
 }
 #btn {
   height: 43px;
@@ -62,6 +112,7 @@ header img {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 2.5em;
 }
 .card {
   width: fit-content;
@@ -219,6 +270,13 @@ footer ul li a {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 20px;
+  }
+  .search-user {
+    width: 412px;
+  }
+  .search-result {
+    margin-left: -69px;
+    margin-top: -14px;
   }
   #btn {
     margin-top: 5px;

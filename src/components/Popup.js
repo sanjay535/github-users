@@ -39,11 +39,6 @@ class Popup extends React.Component {
     this.props.dispatch(hidePopup(false));
   };
 
-  followerClick = () => {
-    // console.log("Called follower click");
-    // scrollToRef(this.myRef);
-  };
-
   render() {
     const { user_details, followers } = this.props;
     return (
@@ -67,7 +62,6 @@ class Popup extends React.Component {
               {followers.map((follower) => {
                 return (
                   <Follower
-                    followerClick={this.followerClick}
                     follower={follower}
                     key={follower.id}
                   />

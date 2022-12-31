@@ -4,6 +4,9 @@ import {
   SHOW_POPUP,
   UPDATE_FOLLOWERS_DETAILS,
   UPDATE_USER_DETAILS,
+  ADD_SEARCH_RESULT,
+  SHOW_SPINNER,
+  HIDE_SPINNER
 } from "./actionTypes";
 
 export function addUsers(userList = []) {
@@ -76,4 +79,43 @@ export function hidePopup(show = true) {
     type: HIDE_POPUP,
     show,
   };
+}
+
+export function fetchSearchResult(query){
+  // const url=`https://api.github.com/search/users?q=sanjay&page=2`
+  const url=`https://api.github.com/search/users?q=${query}`;
+  return function (dispatch) {
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log("followers_url=", res);
+        dispatch(addSearchResult(res));
+      })
+      .catch((error) => console.error(error))
+      .finally(()=>{
+        setTimeout(()=>{
+          dispatch(hideSpinner());
+        },0)
+      })
+  };
+}
+
+export function addSearchResult(res){
+  return {
+    type:ADD_SEARCH_RESULT,
+    search_result:res
+  }
+}
+
+export function showSpinner(){
+  return {
+    type:SHOW_SPINNER,
+    spinner:true
+  }
+}
+export function hideSpinner(){
+  return {
+    type:HIDE_SPINNER,
+    spinner:false
+  }
 }
